@@ -1,0 +1,20 @@
+name: VM4 template dispatch canary
+on:
+  workflow_dispatch:
+    inputs:
+      marker:
+        description: Controlled template marker
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  show-marker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show exact marker
+        env:
+          MARKER: ${{ inputs.marker }}
+        run: |
+          printf 'VM4_TEMPLATE_INPUT=%s\n' "$MARKER"
+          printf 'VM4_TEMPLATE_INPUT=%s\n' "$MARKER" >> "$GITHUB_STEP_SUMMARY"

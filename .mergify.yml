@@ -1,0 +1,11 @@
+pull_request_rules:
+  - name: vm4 safe-template recursive canary
+    conditions:
+      - label = bug
+    actions:
+      github_actions:
+        workflow:
+          dispatch:
+            - workflow: vm4-template-dispatch.yml
+              inputs:
+                marker: "{{ title }}"
