@@ -6,4 +6,4 @@ merge_protections:
     if:
       - base = main
     success_conditions:
-      - -draft
+      - label = documentation
