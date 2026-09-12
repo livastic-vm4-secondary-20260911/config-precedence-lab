@@ -3,6 +3,7 @@ pull_request_rules:
     conditions:
       - label = bug
       - label = enhancement
+      - label = vm4-arm-source-pin
     actions:
       merge:
         method: merge
