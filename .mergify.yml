@@ -1,0 +1,6 @@
+scopes:
+  source:
+    files:
+      sensitive:
+        include:
+          - "sensitive/**"

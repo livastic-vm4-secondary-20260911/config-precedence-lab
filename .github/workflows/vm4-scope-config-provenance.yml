@@ -1,0 +1,25 @@
+name: VM4 scope config provenance probe
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  scope-detect:
+    runs-on: ubuntu-latest
+    outputs:
+      scopes: ${{ steps.mergify-scopes.outputs.scopes }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: mergify-scopes
+        uses: Mergifyio/gha-mergify-ci@v25
+        with:
+          action: scopes
+  sensitive-test:
+    needs: scope-detect
+    if: ${{ fromJSON(needs.scope-detect.outputs.scopes).sensitive == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Controlled sensitive test must fail whenever sensitive scope is detected"
+          exit 1
