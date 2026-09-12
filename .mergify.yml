@@ -1,9 +1,0 @@
-scopes:
-  source:
-    files:
-      critical:
-        include:
-          - "critical/**"
-      ignored:
-        include:
-          - "ignored/**"
