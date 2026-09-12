@@ -1,0 +1,13 @@
+name: VM4 queue branch edit hold
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  vm4-hold:
+    name: vm4-hold
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 45
+      - run: echo "controlled queue-branch-edit hold complete"
