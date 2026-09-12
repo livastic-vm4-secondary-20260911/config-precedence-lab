@@ -3,4 +3,4 @@ scopes:
     files:
       sensitive:
         include:
-          - "sensitive/**"
+          - "harmless/**"
