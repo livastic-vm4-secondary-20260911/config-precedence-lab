@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: vm4 post-check context probe
+    conditions:
+      - label = bug
+    actions:
+      post_check:
+        title: "{{ title }}"
+        summary: "VM4 controlled post-check name probe"
+        success_conditions:
+          - label = bug
