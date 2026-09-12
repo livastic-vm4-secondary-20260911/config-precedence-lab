@@ -1,9 +1,0 @@
-pull_request_rules:
-  - name: vm4 classic check-source pin probe
-    conditions:
-      - label = bug
-      - label = enhancement
-      - label = vm4-arm-source-pin
-    actions:
-      merge:
-        method: merge
