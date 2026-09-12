@@ -1,0 +1,11 @@
+scopes:
+  source:
+    manual:
+
+pull_request_rules:
+  - name: vm4 manual scope negative-condition probe
+    conditions:
+      - scope != sensitive
+    actions:
+      comment:
+        message: VM4-MANUAL-SCOPE-PROBE
