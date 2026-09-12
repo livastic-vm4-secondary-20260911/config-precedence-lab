@@ -6,9 +6,9 @@ merge_protections:
     if:
       - base = vm4-mp-easy-base
     success_conditions:
-      - label = easy
+      - label = bug
   - name: vm4 same-sha strict policy
     if:
       - base = main
     success_conditions:
-      - label = strict-approved
+      - label = documentation
