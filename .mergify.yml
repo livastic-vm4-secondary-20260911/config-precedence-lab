@@ -1,0 +1,12 @@
+pull_request_rules:
+  - name: VM4 post-check transformer canary
+    conditions:
+      - label = vm4-never-trigger-post-check-transformer
+    actions:
+      post_check:
+        success_conditions:
+          - label = vm4-success-a
+          - label = vm4-success-b
+        neutral_conditions:
+          - label = vm4-neutral-a
+          - label = vm4-neutral-b
