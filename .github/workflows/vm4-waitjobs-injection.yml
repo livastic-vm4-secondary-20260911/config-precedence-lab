@@ -1,0 +1,44 @@
+name: VM4 wait-jobs injection probe
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      payload: ${{ steps.out.outputs.payload }}
+    steps:
+      - id: out
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          delimiter="VM4_TITLE_EOF_${RANDOM}_${RANDOM}"
+          echo "payload<<$delimiter" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$PR_TITLE" >> "$GITHUB_OUTPUT"
+          echo "$delimiter" >> "$GITHUB_OUTPUT"
+
+  gate:
+    needs: [metadata]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      VM4_WAITJOB_ONLY: gate-context-canary
+    steps:
+      - name: Mergify wait jobs
+        uses: Mergifyio/gha-mergify-ci@v25
+        with:
+          action: wait-jobs
+          jobs: ${{ toJSON(needs) }}
+      - name: Verify no command injection
+        run: |
+          test -f /tmp/vm4_waitjobs_injected
+          value="$(cat /tmp/vm4_waitjobs_injected)"
+          echo "Observed controlled value: $value"
+          test "$value" = "gate-context-canary:oidc-present"
