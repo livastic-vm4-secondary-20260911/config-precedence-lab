@@ -8,4 +8,3 @@ queue_rules:
     update_method: rebase
     max_checks_retries: 1
     allow_queue_branch_edit: false
-    status_comments: all
