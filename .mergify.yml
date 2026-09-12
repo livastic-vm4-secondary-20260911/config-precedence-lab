@@ -1,0 +1,14 @@
+merge_protections_settings:
+  reporting_method: check-runs
+  post_comment: false
+merge_protections:
+  - name: vm4 base-change easy policy
+    if:
+      - base = vm4-mp-basechange-easy
+    success_conditions:
+      - label = bug
+  - name: vm4 base-change strict policy
+    if:
+      - base = main
+    success_conditions:
+      - label = documentation
