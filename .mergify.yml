@@ -1,6 +1,0 @@
-scopes:
-  source:
-    files:
-      probe:
-        include:
-          - "[^a].py"
