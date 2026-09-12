@@ -1,0 +1,26 @@
+name: VM4 scope caret-class parity probe
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  scope-detect:
+    runs-on: ubuntu-latest
+    outputs:
+      scopes: ${{ steps.mergify-scopes.outputs.scopes }}
+      cli-version: ${{ steps.mergify-scopes.outputs.mergify_cli_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: mergify-scopes
+        uses: Mergifyio/gha-mergify-ci@v25
+        with:
+          action: scopes
+  sensitive-test:
+    needs: scope-detect
+    if: ${{ fromJSON(needs.scope-detect.outputs.scopes).probe == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "This controlled test must fail whenever probe scope is detected"
+          exit 1
