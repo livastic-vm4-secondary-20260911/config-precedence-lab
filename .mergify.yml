@@ -1,8 +1,0 @@
-pull_request_rules:
-  - name: vm4 classic CODEOWNERS empty-team discriminator
-    conditions:
-      - label = bug
-      - label = enhancement
-    actions:
-      merge:
-        method: merge
