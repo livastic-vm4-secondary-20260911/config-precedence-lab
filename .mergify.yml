@@ -19,10 +19,10 @@ pull_request_rules:
   - name: vm4 comment template command provenance probe
     conditions:
       - author = livastic-vm4-secondary-20260911
-      - label = bug
+      - label = vm4-self-command-trigger
     actions:
       comment:
         message: "{{title}}"
       label:
         remove:
-          - bug
+          - vm4-self-command-trigger
