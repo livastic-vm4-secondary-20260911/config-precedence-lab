@@ -1,8 +1,0 @@
-pull_request_rules:
-  - name: vm4 shared-head delete safety probe
-    conditions:
-      - closed
-      - label = bug
-    actions:
-      delete_head_branch:
-        force: false
