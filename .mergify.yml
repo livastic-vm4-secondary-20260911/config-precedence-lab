@@ -2,6 +2,7 @@ pull_request_rules:
   - name: vm4 branch-protection lifecycle merge probe
     conditions:
       - label = bug
+      - label = enhancement
       - check-success = vm4-bp-go
     actions:
       merge:
