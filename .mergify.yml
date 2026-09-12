@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: vm4 restricted-push actor probe
+    conditions:
+      - label = bug
+      - label = enhancement
+      - label = documentation
+    actions:
+      merge:
+        method: merge
