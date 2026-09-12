@@ -1,0 +1,14 @@
+name: VM4 source pin probe
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  vm4-source-pin:
+    name: vm4-source-pin
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "This genuine GitHub Actions check intentionally fails"
+          exit 1
