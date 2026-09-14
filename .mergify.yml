@@ -1,6 +1,0 @@
-merge_protections:
-  - name: vm4 label rename freshness discriminator
-    if:
-      - base = main
-    success_conditions:
-      - label = vm4-stale-label
