@@ -1,0 +1,7 @@
+pull_request_rules:
+  - name: VM4 direct fork update bot-account discriminator
+    conditions:
+      - title = VM4 direct fork update bot-account discriminator
+    actions:
+      update:
+        bot_account: livastic-vm4-primary-20260911
