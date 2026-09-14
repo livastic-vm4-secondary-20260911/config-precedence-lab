@@ -1,0 +1,11 @@
+queue_rules:
+  - name: vm4-fork-rebase-refusal
+    queue_conditions: []
+    merge_conditions:
+      - label = vm4-never-merge
+    update_method: rebase
+    update_bot_account: livastic-vm4-primary-20260911
+    merge_method: merge
+    merge_bot_account: livastic-vm4-primary-20260911
+    branch_protection_injection_mode: none
+pull_request_rules: []
