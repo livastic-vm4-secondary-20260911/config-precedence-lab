@@ -1,0 +1,6 @@
+merge_protections:
+  - name: vm4 merge-protections product revocation discriminator
+    if:
+      - base = main
+    success_conditions:
+      - title = VM4_MP_PRODUCT_REVOCATION
