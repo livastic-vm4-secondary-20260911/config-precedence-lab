@@ -6,4 +6,5 @@ queue_rules:
     queue_conditions: []
     merge_conditions:
       - check-success = VM4 config generation delay
+      - check-success = VM4 config generation never
     checks_timeout: null
