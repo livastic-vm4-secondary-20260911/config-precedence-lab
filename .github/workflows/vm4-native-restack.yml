@@ -11,14 +11,17 @@ jobs:
     name: VM4 native restack guard
     runs-on: ubuntu-latest
     steps:
-      - name: Reject child only after GitHub restacks it to main
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reject child after its physical parent is incorporated into main
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
-          BASE_REF: ${{ github.base_ref }}
         run: |
-          printf 'title=%s base=%s\n' "$PR_TITLE" "$BASE_REF"
-          if [[ "$PR_TITLE" == VM4-NATIVE-STACK-CHILD* && "$BASE_REF" == "main" ]]; then
-            echo 'VM4_NATIVE_RESTACK_GUARD_FAIL'
+          git fetch origin main
+          printf 'title=%s head=%s parent=%s main=%s\n' "$PR_TITLE" "$(git rev-parse HEAD)" "$(git rev-parse HEAD^)" "$(git rev-parse origin/main)"
+          if [[ "$PR_TITLE" == VM4-NATIVE-STACK-CHILD* ]] && git merge-base --is-ancestor HEAD^ origin/main; then
+            echo 'VM4_NATIVE_RESTACK_GUARD_FAIL_PARENT_NOW_IN_MAIN'
             exit 17
           fi
-          echo 'VM4_NATIVE_RESTACK_GUARD_PASS'
+          echo 'VM4_NATIVE_RESTACK_GUARD_PASS_PARENT_NOT_IN_MAIN_OR_NONCHILD'
