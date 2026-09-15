@@ -1,0 +1,17 @@
+name: VM4 timeout late success
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  delayed-success:
+    name: VM4 timeout late success
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delay beyond Mergify checks timeout
+        run: sleep 75
+      - name: Succeed after timeout budget
+        run: echo 'VM4_TIMEOUT_LATE_SUCCESS_20260916'
