@@ -1,8 +1,0 @@
-pull_request_rules:
-  - name: VM4 aggregate JUnit false-green merge consumer
-    conditions:
-      - base = main
-      - title = vm4-junit-multifile-chain-marker-20260916
-      - check-success = VM4 aggregate required
-    actions:
-      merge:
