@@ -1,0 +1,28 @@
+name: VM4 required truncated JUnit probe
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  required-tests:
+    name: VM4 required tests
+    runs-on: ubuntu-latest
+    env:
+      MERGIFY_TEST_JOB_NAME: vm4-required-tests
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run controlled crashing test producer
+        shell: bash
+        run: |
+          python - <<'PY' || true
+          from pathlib import Path
+          Path('report.xml').write_text('<testsuites><testsuite name="vm4"><testcase name="ok"/><testcase name="bad"><failure message="boom">controlled failure')
+          raise SystemExit(17)
+          PY
+      - name: Upload through dashboard-pinned v14
+        uses: mergifyio/gha-mergify-ci@v14
+        with:
+          token: ${{ secrets.VM4_MERGIFY_JUNIT_PM }}
+          flaky_test_detection: true
+          report_path: report.xml
