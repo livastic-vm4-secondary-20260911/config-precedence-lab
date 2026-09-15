@@ -39,3 +39,20 @@ jobs:
           token: ${{ secrets.VM4_MERGIFY_JUNIT_TRUNC_PROBE }}
           flaky_test_detection: true
           report_path: report.xml
+  truncated-v25-safety-control:
+    runs-on: ubuntu-latest
+    env:
+      MERGIFY_TEST_JOB_NAME: vm4-truncated-v25-safety-control
+    steps:
+      - name: Generate same truncated failing JUnit
+        shell: bash
+        run: |
+          printf '%s' '<testsuites><testsuite name="vm4"><testcase name="ok"/><testcase name="bad"><failure message="boom">controlled failure' > report.xml
+          false || true
+      - name: Upload through v25 safety guard
+        uses: mergifyio/gha-mergify-ci@v25
+        with:
+          token: ${{ secrets.VM4_MERGIFY_JUNIT_TRUNC_PROBE }}
+          report_path: report.xml
+          test_step_outcome: failure
+          mergify_cli_version: 2026.9.10.1
