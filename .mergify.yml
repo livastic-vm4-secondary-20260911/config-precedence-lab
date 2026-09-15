@@ -1,7 +1,0 @@
-pull_request_rules:
-  - name: VM4 reviewer file-pattern rename parity probe
-    conditions:
-      - title = VM4_FILEPATTERN_RENAME_PROBE_20260915
-    actions:
-      merge:
-        method: merge
