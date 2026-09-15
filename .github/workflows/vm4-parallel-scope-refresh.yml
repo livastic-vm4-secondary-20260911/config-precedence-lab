@@ -1,0 +1,24 @@
+name: VM4 parallel scope combined guard
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: VM4 parallel scope combined guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keep overlap-mutation window open
+        run: sleep 35
+      - name: Reject combined alpha+beta marker state
+        run: |
+          find scope-a scope-b -maxdepth 2 -type f -print 2>/dev/null || true
+          if [[ -f scope-a/a-marker.txt && -f scope-b/b-marker.txt ]]; then
+            echo VM4_PARALLEL_SCOPE_GUARD_FAIL_COMBINED_STATE
+            exit 17
+          fi
+          echo VM4_PARALLEL_SCOPE_GUARD_PASS

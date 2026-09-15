@@ -1,0 +1,21 @@
+merge_queue:
+  mode: parallel
+  max_parallel_checks: 2
+
+scopes:
+  source:
+    files:
+      alpha:
+        include:
+          - scope-a/**
+      beta:
+        include:
+          - scope-b/**
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM4 parallel scope combined guard
+    batch_size: 1
+    checks_timeout: null
