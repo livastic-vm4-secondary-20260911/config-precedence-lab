@@ -1,8 +1,0 @@
-merge_queue:
-  max_parallel_checks: 1
-
-queue_rules:
-  - name: default
-    queue_conditions:
-      - check-success = VM4 native restack guard
-    merge_conditions: []
