@@ -1,0 +1,9 @@
+merge_queue:
+  max_parallel_checks: 1
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM4 config generation delay
+    checks_timeout: null
