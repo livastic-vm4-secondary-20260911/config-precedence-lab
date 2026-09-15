@@ -8,6 +8,3 @@ queue_rules:
       - check-success = VM4 timeout late success
     checks_timeout: 1 min
 
-merge_protections_settings:
-  auto_merge_conditions:
-    - title = vm4-timeout-late-success-20260916
