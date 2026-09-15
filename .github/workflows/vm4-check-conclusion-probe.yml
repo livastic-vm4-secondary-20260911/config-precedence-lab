@@ -1,0 +1,38 @@
+name: VM4 check conclusion probe
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  checks: write
+jobs:
+  create-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create controlled Check Runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TARGET_SHA: af2610f102dcd8544b4e77d762b03a7ed5c9ea85
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          token=os.environ['GH_TOKEN']; repo=os.environ['REPO']; sha=os.environ['TARGET_SHA']
+          for conclusion in ('startup_failure','action_required'):
+              body=json.dumps({
+                  'name': f'vm4-{conclusion}',
+                  'head_sha': sha,
+                  'status': 'completed',
+                  'conclusion': conclusion,
+                  'output': {'title': f'VM4 {conclusion}', 'summary': 'Controlled check conclusion classification probe'}
+              }).encode()
+              req=urllib.request.Request(f'https://api.github.com/repos/{repo}/check-runs',data=body,method='POST',headers={
+                  'Authorization': f'Bearer {token}',
+                  'Accept': 'application/vnd.github+json',
+                  'Content-Type': 'application/json',
+                  'User-Agent': 'vm4-check-conclusion-probe'
+              })
+              with urllib.request.urlopen(req,timeout=15) as r:
+                  d=json.load(r)
+                  print(conclusion, d['id'], d['conclusion'])
+          PY
