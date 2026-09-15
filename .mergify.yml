@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: VM4 numeric foreign workflow id probe
+    conditions:
+      - title = VM4_NUMERIC_FOREIGN_WORKFLOW_PROBE_20260915
+    actions:
+      github_actions:
+        workflow:
+          dispatch:
+            - workflow: "358435215"
