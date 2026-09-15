@@ -1,0 +1,41 @@
+name: VM4 v14 truncated JUnit discriminator
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  valid-failure-control:
+    runs-on: ubuntu-latest
+    env:
+      MERGIFY_TEST_JOB_NAME: vm4-valid-failure-control
+    steps:
+      - name: Generate valid failing JUnit while masking runner exit
+        shell: bash
+        run: |
+          cat > report.xml <<'XML'
+          <testsuites><testsuite name="vm4" tests="2" failures="1"><testcase name="ok"/><testcase name="bad"><failure message="boom">controlled failure</failure></testcase></testsuite></testsuites>
+          XML
+          false || true
+      - name: Upload through dashboard-pinned v14
+        uses: mergifyio/gha-mergify-ci@v14
+        with:
+          token: ${{ secrets.VM4_MERGIFY_JUNIT_TRUNC_PROBE }}
+          flaky_test_detection: true
+          report_path: report.xml
+  truncated-failure-probe:
+    runs-on: ubuntu-latest
+    env:
+      MERGIFY_TEST_JOB_NAME: vm4-truncated-failure-probe
+    steps:
+      - name: Generate truncated failing JUnit while masking runner exit
+        shell: bash
+        run: |
+          printf '%s' '<testsuites><testsuite name="vm4"><testcase name="ok"/><testcase name="bad"><failure message="boom">controlled failure' > report.xml
+          false || true
+      - name: Upload through dashboard-pinned v14
+        uses: mergifyio/gha-mergify-ci@v14
+        with:
+          token: ${{ secrets.VM4_MERGIFY_JUNIT_TRUNC_PROBE }}
+          flaky_test_detection: true
+          report_path: report.xml
