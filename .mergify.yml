@@ -1,0 +1,7 @@
+pull_request_rules:
+  - name: VM4 reviewer authority revocation probe
+    conditions:
+      - title = VM4_REVIEWER_AUTHORITY_REVOKE_PROBE_20260915
+    actions:
+      merge:
+        method: merge
