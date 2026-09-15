@@ -1,0 +1,13 @@
+merge_queue:
+  max_parallel_checks: 1
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - title~=^VM4-MERGEBATCH-GATE-20260916-
+      - check-success = VM4 merge-batch delay
+    merge_method: merge-batch
+    batch_size: 2
+    batch_max_wait_time: 2 min
+    checks_timeout: null
