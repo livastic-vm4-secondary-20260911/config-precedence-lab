@@ -9,4 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Controlled pending window
-        run: sleep 180
+        run: |
+          if [[ "$GITHUB_HEAD_REF" == mergify/merge-queue/* ]]; then
+            sleep 180
+          else
+            sleep 1
+          fi
