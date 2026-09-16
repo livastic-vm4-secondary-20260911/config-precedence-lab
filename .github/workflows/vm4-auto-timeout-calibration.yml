@@ -1,0 +1,12 @@
+name: VM4 calibration workflow
+
+on:
+  pull_request:
+
+jobs:
+  calibration:
+    name: VM4 calibration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Controlled short CI sample
+        run: sleep 2
