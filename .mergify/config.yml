@@ -7,6 +7,7 @@ queue_rules:
       - author = livastic-vm4-secondary-20260911
     merge_conditions:
       - check-success = VM4 calibration
+      - label = vm4-calibration-never-merge
     merge_method: merge
     checks_timeout: auto
     autoqueue: true
