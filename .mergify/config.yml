@@ -1,1 +1,11 @@
-pull_request_rules: []
+merge_queue:
+  max_parallel_checks: 1
+
+queue_rules:
+  - name: default
+    queue_conditions:
+      - label = vm4-stale-migration-auto
+    merge_conditions:
+      - check-success = VM4_STALE_MIGRATION_HOLD_NEVER
+    merge_method: merge
+    autoqueue: true
