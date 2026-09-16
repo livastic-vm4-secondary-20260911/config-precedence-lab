@@ -1,12 +1,12 @@
-name: VM4 calibration workflow
+name: VM4 auto-timeout long workflow
 
 on:
   pull_request:
 
 jobs:
-  calibration:
-    name: VM4 calibration
+  long_probe:
+    name: VM4 auto-timeout long
     runs-on: ubuntu-latest
     steps:
-      - name: Controlled short CI sample
-        run: sleep 2
+      - name: Controlled pending window
+        run: sleep 180
