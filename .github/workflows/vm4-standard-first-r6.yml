@@ -1,0 +1,14 @@
+name: VM4 standard first-member post-success head R6
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  delay:
+    if: github.event.action != 'synchronize' || github.head_ref != 'vm4-standard-first-r6-a'
+    name: VM4 standard first-member post-success head R6
+    runs-on: ubuntu-latest
+    steps:
+      - if: startsWith(github.head_ref, 'mergify/merge-queue/')
+        run: sleep 50
+      - run: echo old-green
