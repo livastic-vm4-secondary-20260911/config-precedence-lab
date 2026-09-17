@@ -1,1 +1,12 @@
-pull_request_rules: []
+merge_queue:
+  max_parallel_checks: 1
+
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM4 dequeue finalizer delay
+    merge_method: merge-batch
+    batch_size: 1
+    batch_max_wait_time: 1 min
+    checks_timeout: null
