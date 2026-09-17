@@ -1,0 +1,12 @@
+name: VM4 standard merge post-success head freshness R3
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  delay:
+    name: VM4 standard merge post-success head freshness R3
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 75
+      - run: echo old-green
