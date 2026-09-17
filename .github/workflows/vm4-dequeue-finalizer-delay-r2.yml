@@ -11,5 +11,5 @@ jobs:
     name: VM4 dequeue finalizer delay r2
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 45
+      - run: sleep 120
       - run: echo ok
