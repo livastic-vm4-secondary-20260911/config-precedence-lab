@@ -7,6 +7,6 @@ queue_rules:
     merge_conditions:
       - check-success = VM4 dequeue finalizer delay
     merge_method: merge-batch
-    batch_size: 1
+    batch_size: 2
     batch_max_wait_time: 1 min
     checks_timeout: null
