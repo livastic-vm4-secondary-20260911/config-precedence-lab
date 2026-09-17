@@ -5,6 +5,7 @@ permissions:
   contents: read
 jobs:
   delay:
+    if: github.event.action != 'synchronize'
     name: VM4 standard merge post-success head freshness R3
     runs-on: ubuntu-latest
     steps:
