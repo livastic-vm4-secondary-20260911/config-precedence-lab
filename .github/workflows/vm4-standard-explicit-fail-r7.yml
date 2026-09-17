@@ -1,0 +1,17 @@
+name: VM4 standard explicit-fail post-success head R7
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  probe:
+    name: VM4 standard explicit-fail post-success head R7
+    runs-on: ubuntu-latest
+    steps:
+      - if: startsWith(github.head_ref, 'mergify/merge-queue/')
+        run: sleep 45
+      - if: github.event.action == 'synchronize' && github.head_ref == 'vm4-standard-explicit-fail-r7-a'
+        run: |
+          echo 'intentional failure on mutated source head'
+          exit 1
+      - run: echo green
