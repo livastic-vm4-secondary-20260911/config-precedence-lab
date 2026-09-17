@@ -8,5 +8,6 @@ jobs:
     name: VM4 standard merge post-success head freshness R3
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 75
+      - if: startsWith(github.head_ref, 'mergify/merge-queue/')
+        run: sleep 75
       - run: echo old-green
