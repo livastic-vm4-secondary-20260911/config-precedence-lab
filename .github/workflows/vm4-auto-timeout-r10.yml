@@ -1,0 +1,13 @@
+name: VM4 auto timeout impact R10
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  probe:
+    name: VM4 auto timeout impact R10
+    runs-on: ubuntu-latest
+    steps:
+      - if: startsWith(github.head_ref, 'mergify/merge-queue/')
+        run: sleep 300
+      - run: echo ok
