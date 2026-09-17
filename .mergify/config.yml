@@ -1,8 +1,1 @@
-pull_request_rules:
-  - name: VM4 active fallback config change guard
-    conditions:
-      - title = VM4_FALLBACK_CONFIG_GUARD_20260917
-      - -mergify-configuration-changed
-    actions:
-      comment:
-        message: VM4_FALLBACK_GUARD_SHOULD_NOT_RUN_20260917
+pull_request_rules: []
