@@ -1,13 +1,1 @@
-merge_queue:
-  max_parallel_checks: 1
-queue_rules:
-  - name: default
-    queue_conditions: []
-    merge_conditions:
-      - check-success = VM4 post-success title revocation delay
-      - title ~= ^VM4_AUTHORIZED_
-    merge_method: merge-batch
-    batch_size: 2
-    batch_max_wait_time: 2 min
-    checks_timeout: null
 pull_request_rules: []
