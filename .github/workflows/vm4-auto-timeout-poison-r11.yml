@@ -1,0 +1,13 @@
+name: VM4 auto timeout poison R11
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  calibration:
+    name: VM4 auto timeout poison R11
+    runs-on: ubuntu-latest
+    steps:
+      - if: startsWith(github.head_ref, 'mergify/merge-queue/')
+        run: sleep 270
+      - run: echo calibration-ok
