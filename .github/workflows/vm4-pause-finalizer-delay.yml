@@ -1,0 +1,15 @@
+name: VM4 pause finalizer delay
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  delay:
+    name: VM4 pause finalizer delay
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 20
+      - run: echo ok
