@@ -5,7 +5,7 @@ permissions:
   contents: read
 jobs:
   delay:
-    if: github.event.action != 'synchronize'
+    if: github.event.action != 'synchronize' || github.head_ref != 'vm4-standard-r3-b'
     name: VM4 standard merge post-success head freshness R3
     runs-on: ubuntu-latest
     steps:
