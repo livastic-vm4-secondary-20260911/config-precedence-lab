@@ -1,0 +1,18 @@
+name: VM4 R33 two-step topology
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  source:
+    if: ${{ !startsWith(github.head_ref, 'mergify/merge-queue/') }}
+    name: VM4 R33 Source Gate
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo source-green
+  merge:
+    if: ${{ startsWith(github.head_ref, 'mergify/merge-queue/') }}
+    name: VM4 R33 Merge Gate
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo merge-green
