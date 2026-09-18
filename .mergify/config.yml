@@ -1,1 +1,12 @@
+merge_queue:
+  mode: isolated
+  max_parallel_checks: 1
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions:
+      - check-success = VM4 R40 Isolated Old Draft Gate
+    batch_size: 1
+    batch_max_wait_time: 0
+    merge_method: merge
 pull_request_rules: []
