@@ -1,8 +1,1 @@
-pull_request_rules:
-  - name: vm4-r16b-attacker-title-auto-merge
-    conditions:
-      - base = vm4-r16b/é
-      - title = VM4_R16B_ATTACKER_AUTO_MERGE
-    actions:
-      merge:
-        method: merge
+pull_request_rules: []
