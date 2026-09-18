@@ -1,9 +1,1 @@
-pull_request_rules:
-  - name: vm4-r32-required-reviewers-attacker-trigger
-    conditions:
-      - base = main
-      - author = livastic-vm4-secondary-20260911
-      - title = VM4_R32_ATTACKER_AUTO_MERGE
-    actions:
-      merge:
-        method: merge
+pull_request_rules: []
