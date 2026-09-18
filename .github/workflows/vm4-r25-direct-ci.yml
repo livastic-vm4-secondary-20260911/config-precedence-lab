@@ -1,0 +1,11 @@
+name: VM4 R25 Direct CI
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  ci:
+    name: VM4 R25 Direct CI
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo VM4_R25_DIRECT_CI_GREEN
