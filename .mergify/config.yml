@@ -1,8 +1,1 @@
-pull_request_rules:
-  - name: vm4-r41-relay-pr-body
-    conditions:
-      - author = livastic-vm4-secondary-20260911
-      - title = VM4_R41_RELAY_TRIGGER
-    actions:
-      comment:
-        message: "{{ body }}"
+pull_request_rules: []
