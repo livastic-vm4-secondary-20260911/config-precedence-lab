@@ -1,12 +1,1 @@
-merge_queue:
-  max_parallel_checks: 1
-queue_rules:
-  - name: default
-    queue_conditions: []
-    merge_conditions:
-      - check-success = VM4 R25 Direct CI
-    batch_size: 1
-    batch_max_wait_time: 0
-    merge_method: merge
-    update_method: rebase
 pull_request_rules: []
