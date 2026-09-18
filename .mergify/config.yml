@@ -1,8 +1,1 @@
-pull_request_rules:
-  - name: vm4-r42-rebase-then-merge-ordering
-    conditions:
-      - label = vm4-r42-trigger
-    actions:
-      rebase: {}
-      merge:
-        method: merge
+pull_request_rules: []
