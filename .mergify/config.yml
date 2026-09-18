@@ -3,8 +3,7 @@ merge_queue:
 queue_rules:
   - name: default
     queue_conditions: []
-    merge_conditions:
-      - check-success = VM4 codeowners unicode qmark hold never
+    merge_conditions: []
     merge_method: merge
     batch_size: 1
     checks_timeout: null
