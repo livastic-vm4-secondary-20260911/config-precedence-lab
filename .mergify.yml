@@ -11,3 +11,14 @@ queue_rules:
     batch_size: 1
     batch_max_wait_time: "1 second"
     checks_timeout: null
+
+pull_request_rules:
+  - name: vm4 merged-by stale identity backport probe
+    conditions:
+      - number = 337
+      - merged
+      - merged-by = livastic-vm4-secondary-20260911
+    actions:
+      backport:
+        branches:
+          - main
