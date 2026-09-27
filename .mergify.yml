@@ -22,3 +22,10 @@ pull_request_rules:
       backport:
         branches:
           - main
+  - name: vm4 depends-on generation rebind merge probe 260927
+    conditions:
+      - title = VM4_DEPENDS_ON_REBIND_TARGET_260927
+      - -merged
+    actions:
+      merge:
+        method: squash
