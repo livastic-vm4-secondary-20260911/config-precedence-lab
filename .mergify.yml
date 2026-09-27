@@ -22,19 +22,3 @@ pull_request_rules:
       backport:
         branches:
           - main
-
-  - name: vm4 review thread pagination sees one 260927
-    conditions:
-      - number = 360
-      - "#review-threads-unresolved = 1"
-    actions:
-      comment:
-        message: VM4_REVIEW_THREADS_UNRESOLVED_EQ_1_260927
-
-  - name: vm4 review thread pagination sees zero 260927
-    conditions:
-      - number = 360
-      - "#review-threads-unresolved = 0"
-    actions:
-      comment:
-        message: VM4_REVIEW_THREADS_UNRESOLVED_EQ_0_260927
